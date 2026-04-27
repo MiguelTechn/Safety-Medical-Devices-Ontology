@@ -1,0 +1,860 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://example.org/safety-medical-devices/"
+     xml:base="http://example.org/safety-medical-devices/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:schema="https://schema.org/"
+     xmlns:safety-medical-devices="http://example.org/safety-medical-devices/">
+    <owl:Ontology rdf:about="http://example.org/safety-medical-devices/">
+        <owl:versionIRI rdf:resource="http://example.org/safety-medical-devices/1.0"/>
+        <rdfs:comment>This ontology describes the risk and incident mitigation processes associated with medical devices.</rdfs:comment>
+        <rdfs:label xml:lang="en">Safety in Medical Devices</rdfs:label>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.0</owl:versionInfo>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#date -->
+
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#date"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://example.org/safety-medical-devices/hasAssociatedRisk -->
+
+
+    <owl:ObjectProperty rdf:about="http://example.org/safety-medical-devices/hasAssociatedRisk">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="https://schema.org/Event"/>
+        <rdfs:range rdf:resource="https://schema.org/MedicalRiskFactor"/>
+        <rdfs:comment xml:lang="en">Relates an incident to the risk type associated.</rdfs:comment>
+        <rdfs:label xml:lang="en">hasAssociatedRisk</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/involvesDevice -->
+
+
+    <owl:ObjectProperty rdf:about="http://example.org/safety-medical-devices/involvesDevice">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="https://schema.org/Event"/>
+        <rdfs:range rdf:resource="https://schema.org/MedicalDevice"/>
+        <rdfs:comment xml:lang="en">Relates a medical incident to the device.</rdfs:comment>
+        <rdfs:label xml:lang="en">involvesDevice</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/takenOver -->
+
+
+    <owl:ObjectProperty rdf:about="http://example.org/safety-medical-devices/takenOver">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="https://schema.org/Action"/>
+        <rdfs:range rdf:resource="https://schema.org/Event"/>
+        <rdfs:comment xml:lang="en">Relates an action taken over an incident.</rdfs:comment>
+        <rdfs:label xml:lang="en">takenOver</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://schema.org/manufacturer -->
+
+
+    <owl:ObjectProperty rdf:about="https://schema.org/manufacturer">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="https://schema.org/MedicalDevice"/>
+        <rdfs:range rdf:resource="https://schema.org/Organization"/>
+        <rdfs:comment xml:lang="en">Relates a medical device to the organization that manufactured it.</rdfs:comment>
+        <rdfs:label xml:lang="en">hasManufacturer</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://example.org/safety-medical-devices/actionDate -->
+
+
+    <owl:DatatypeProperty rdf:about="http://example.org/safety-medical-devices/actionDate">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://schema.org/Action"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+        <rdfs:comment xml:lang="en">Date when an action has been taken</rdfs:comment>
+        <rdfs:label xml:lang="en">actionDate</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/hasDeviceName -->
+
+
+    <owl:DatatypeProperty rdf:about="http://example.org/safety-medical-devices/hasDeviceName">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://schema.org/MedicalDevice"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment xml:lang="en">Medical Device name</rdfs:comment>
+        <rdfs:label xml:lang="en">hasDeviceName</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/hasEudamedSRN -->
+
+
+    <owl:DatatypeProperty rdf:about="http://example.org/safety-medical-devices/hasEudamedSRN">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://schema.org/Organization"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment xml:lang="en">Eudamed identifier for a company</rdfs:comment>
+        <rdfs:label xml:lang="en">hasEudamedSRN</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/hasIMDRFCode -->
+
+
+    <owl:DatatypeProperty rdf:about="http://example.org/safety-medical-devices/hasIMDRFCode">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://schema.org/MedicalRiskFactor"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment xml:lang="en">IMDRF Code for a risk</rdfs:comment>
+        <rdfs:label xml:lang="en">hasIMDRFCode</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/hasRiskClass -->
+
+
+    <owl:DatatypeProperty rdf:about="http://example.org/safety-medical-devices/hasRiskClass">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://schema.org/MedicalDevice"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment xml:lang="en">Risk class related to the regulatory framework</rdfs:comment>
+        <rdfs:label xml:lang="en">hasRiskClass</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/hasSeverity -->
+
+
+    <owl:DatatypeProperty rdf:about="http://example.org/safety-medical-devices/hasSeverity">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://schema.org/MedicalRiskFactor"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment xml:lang="en">Severity of an medical risk</rdfs:comment>
+        <rdfs:label xml:lang="en">hasSeverity</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/patientHasAge -->
+
+
+    <owl:DatatypeProperty rdf:about="http://example.org/safety-medical-devices/patientHasAge">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://schema.org/Event"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+        <rdfs:comment xml:lang="en">Incident patient age</rdfs:comment>
+        <rdfs:label xml:lang="en">patientHasAge</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://example.org/safety-medical-devices/ActiveDevice -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/ActiveDevice">
+        <rdfs:subClassOf rdf:resource="https://schema.org/MedicalDevice"/>
+        <rdfs:comment xml:lang="en">Device that requires a power source.</rdfs:comment>
+        <rdfs:label xml:lang="en">ActiveDevice</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/ContaminationRisk -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/ContaminationRisk">
+        <rdfs:subClassOf rdf:resource="https://schema.org/MedicalRiskFactor"/>
+        <rdfs:comment xml:lang="en">Contamination related Medical Risk Type. It involves all contamination risks with Medical Devices.</rdfs:comment>
+        <rdfs:label xml:lang="en">ContaminationRisk</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/CybersecurityRisk -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/CybersecurityRisk">
+        <rdfs:subClassOf rdf:resource="https://schema.org/MedicalRiskFactor"/>
+        <rdfs:comment xml:lang="en">Cybersecurity related Medical Risk Type. It involves all cybersecurity risks with Medical Devices as hackers attacks or software vulnerabilities.</rdfs:comment>
+        <rdfs:label xml:lang="en">CybersecurityRisk</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/DiagnosticRisk -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/DiagnosticRisk">
+        <rdfs:subClassOf rdf:resource="https://schema.org/MedicalRiskFactor"/>
+        <rdfs:comment xml:lang="en">Diagnostic related Medical Risk Type. It involves all diagnostic risks with Medical Devices as false positives.</rdfs:comment>
+        <rdfs:label xml:lang="en">DiagnosticRisk</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/HighRiskDevice -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/HighRiskDevice">
+        <rdfs:subClassOf rdf:resource="https://schema.org/MedicalDevice"/>
+        <rdfs:comment xml:lang="en">Medical Device categorized as HighRiskDevice if the risk associated equivalent to ClassIII</rdfs:comment>
+        <rdfs:label xml:lang="en">HighRiskDevice</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/ImplantableActiveDevice -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/ImplantableActiveDevice">
+        <rdfs:subClassOf rdf:resource="http://example.org/safety-medical-devices/ActiveDevice"/>
+        <rdfs:subClassOf rdf:resource="http://example.org/safety-medical-devices/ImplantableDevice"/>
+        <rdfs:comment xml:lang="en">A device that is implantable and requires a power source.</rdfs:comment>
+        <rdfs:label xml:lang="en">ImplantableActiveDevice</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/ImplantableDevice -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/ImplantableDevice">
+        <rdfs:subClassOf rdf:resource="https://schema.org/MedicalDevice"/>
+        <owl:disjointWith rdf:resource="http://example.org/safety-medical-devices/InVitroDiagnosticDevice"/>
+        <rdfs:comment xml:lang="en">Device that is implantable.</rdfs:comment>
+        <rdfs:label xml:lang="en">ImplantableDevice</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/InSituCorrection -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/InSituCorrection">
+        <rdfs:subClassOf rdf:resource="https://schema.org/Action"/>
+        <rdfs:comment xml:lang="en">In Situ Correction action type</rdfs:comment>
+        <rdfs:label xml:lang="en">InSituCorrection</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/InVitroDiagnosticDevice -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/InVitroDiagnosticDevice">
+        <rdfs:subClassOf rdf:resource="https://schema.org/MedicalDevice"/>
+        <rdfs:comment xml:lang="en">Devices that works with samples taken from a human body</rdfs:comment>
+        <rdfs:label xml:lang="en">InVitroDiagnosticDevice</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/InfectionRisk -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/InfectionRisk">
+        <rdfs:subClassOf rdf:resource="https://schema.org/MedicalRiskFactor"/>
+        <rdfs:comment xml:lang="en">Infection related Medical Risk Type. It involves all infection risks with Medical Devices as bacterial accumulation in the device surface.</rdfs:comment>
+        <rdfs:label xml:lang="en">InfectionRisk</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/InjuryRisk -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/InjuryRisk">
+        <rdfs:subClassOf rdf:resource="https://schema.org/MedicalRiskFactor"/>
+        <rdfs:comment xml:lang="en">Injury related Medical Risk Type. It involves all injury risks with Medical Devices as cells desctruction or thrombus formations.</rdfs:comment>
+        <rdfs:label xml:lang="en">InjuryRisk</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/InterferenceRisk -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/InterferenceRisk">
+        <rdfs:subClassOf rdf:resource="https://schema.org/MedicalRiskFactor"/>
+        <rdfs:comment xml:lang="en">Interference related Medical Risk Type. It involves all interference risks with Medical Devices as strange signals from other devices.</rdfs:comment>
+        <rdfs:label xml:lang="en">InterferenceRisk</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/MalfunctionRisk -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/MalfunctionRisk">
+        <rdfs:subClassOf rdf:resource="https://schema.org/MedicalRiskFactor"/>
+        <rdfs:comment xml:lang="en">Mulfunction related Medical Risk Type. It involves all malfunction risks with Medical Devices as electrical failure or structural failure.</rdfs:comment>
+        <rdfs:label xml:lang="en">MalfunctionRisk</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/MaterialRisk -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/MaterialRisk">
+        <rdfs:subClassOf rdf:resource="https://schema.org/MedicalRiskFactor"/>
+        <rdfs:comment xml:lang="en">Material related Medical Risk Type. It involves all material risks with Medical Devices.</rdfs:comment>
+        <rdfs:label xml:lang="en">MaterialRisk</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/NearMissIncident -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/NearMissIncident">
+        <rdfs:subClassOf rdf:resource="https://schema.org/Event"/>
+        <rdfs:comment xml:lang="en">Incidents that almost resulted in loss</rdfs:comment>
+        <rdfs:label xml:lang="en">NearMissIncident</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/PediatricCorrectiveAction -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/PediatricCorrectiveAction">
+        <rdfs:subClassOf rdf:resource="https://schema.org/Action"/>
+        <rdfs:comment xml:lang="en">CorrectiveAction taken over an incident with a patient less than 18 years old.</rdfs:comment>
+        <rdfs:label xml:lang="en">PediatricCorrectiveAction</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/PediatricIncident -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/PediatricIncident">
+        <rdfs:subClassOf rdf:resource="https://schema.org/Event"/>
+        <rdfs:comment xml:lang="en">Incident in a patient less than 18 years old</rdfs:comment>
+        <rdfs:label xml:lang="en">PediatricIncident</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/RadiationRisk -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/RadiationRisk">
+        <rdfs:subClassOf rdf:resource="https://schema.org/MedicalRiskFactor"/>
+        <rdfs:comment xml:lang="en">Radiation related Medical Risk Type. It involves all radiation risks with Medical Devices.</rdfs:comment>
+        <rdfs:label xml:lang="en">RadiationRisk</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/Recall -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/Recall">
+        <rdfs:subClassOf rdf:resource="https://schema.org/Action"/>
+        <rdfs:comment xml:lang="en">Recall action type</rdfs:comment>
+        <rdfs:label xml:lang="en">Recall</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/SafetyAlert -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/SafetyAlert">
+        <rdfs:subClassOf rdf:resource="https://schema.org/Action"/>
+        <rdfs:comment xml:lang="en">Safety Alert action type</rdfs:comment>
+        <rdfs:label xml:lang="en">Safety Alert</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/SelfTestDevice -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/SelfTestDevice">
+        <rdfs:subClassOf rdf:resource="http://example.org/safety-medical-devices/InVitroDiagnosticDevice"/>
+        <rdfs:comment xml:lang="en">Self Test Device is the type of a Medical Device. They are self-diagnostic devices.</rdfs:comment>
+        <rdfs:label xml:lang="en">SelfTestDevice</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/SeriousIncident -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/SeriousIncident">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://schema.org/Event"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://example.org/safety-medical-devices/hasAssociatedRisk"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="https://schema.org/MedicalRiskFactor"/>
+                                    <owl:Class>
+                                        <owl:unionOf rdf:parseType="Collection">
+                                            <owl:Restriction>
+                                                <owl:onProperty rdf:resource="http://example.org/safety-medical-devices/hasSeverity"/>
+                                                <owl:hasValue>Critical</owl:hasValue>
+                                            </owl:Restriction>
+                                            <owl:Restriction>
+                                                <owl:onProperty rdf:resource="http://example.org/safety-medical-devices/hasSeverity"/>
+                                                <owl:hasValue>Serious</owl:hasValue>
+                                            </owl:Restriction>
+                                        </owl:unionOf>
+                                    </owl:Class>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://schema.org/Event"/>
+        <rdfs:comment xml:lang="en">Serious Incident.</rdfs:comment>
+        <rdfs:label xml:lang="en">SeriousIncident</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/SoftwareRisk -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/SoftwareRisk">
+        <rdfs:subClassOf rdf:resource="https://schema.org/MedicalRiskFactor"/>
+        <rdfs:comment xml:lang="en">Software related Medical Risk Type. It involves all software risks with Medical Devices as software bugs or missing criticals updates.</rdfs:comment>
+        <rdfs:label xml:lang="en">SoftwareRisk</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/UserNotice -->
+
+
+    <owl:Class rdf:about="http://example.org/safety-medical-devices/UserNotice">
+        <rdfs:subClassOf rdf:resource="https://schema.org/Action"/>
+        <rdfs:comment xml:lang="en">User Notice action type</rdfs:comment>
+        <rdfs:label xml:lang="en">User Notice</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://schema.org/Action -->
+
+
+    <owl:Class rdf:about="https://schema.org/Action">
+        <rdfs:comment xml:lang="en">Corrective Action taken over an Incident</rdfs:comment>
+        <rdfs:label xml:lang="en">CorrectiveAction</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://schema.org/Event -->
+
+
+    <owl:Class rdf:about="https://schema.org/Event">
+        <rdfs:comment xml:lang="en">Incidents related with Medical Devices.</rdfs:comment>
+        <rdfs:label xml:lang="en">Incident</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://schema.org/MedicalDevice -->
+
+
+    <owl:Class rdf:about="https://schema.org/MedicalDevice">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://schema.org/manufacturer"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="https://schema.org/Organization"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">Medical Device.</rdfs:comment>
+        <rdfs:label xml:lang="en">MedicalDevice</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://schema.org/MedicalRiskFactor -->
+
+
+    <owl:Class rdf:about="https://schema.org/MedicalRiskFactor">
+        <rdfs:comment xml:lang="en">Medical Risks Factors related with Medical Devices</rdfs:comment>
+        <rdfs:label xml:lang="en">MedicalRiskFactor</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://schema.org/Organization -->
+
+
+    <owl:Class rdf:about="https://schema.org/Organization">
+        <rdfs:comment xml:lang="en">Company that manufacture a medical device.</rdfs:comment>
+        <rdfs:label xml:lang="en">Company</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    
+
+
+    <!-- http://example.org/safety-medical-devices/DEV-001 -->
+
+
+    <owl:NamedIndividual rdf:about="http://example.org/safety-medical-devices/DEV-001">
+        <rdf:type rdf:resource="http://example.org/safety-medical-devices/ImplantableActiveDevice"/>
+        <schema:manufacturer rdf:resource="http://example.org/safety-medical-devices/MAN-001"/>
+        <hasDeviceName>HeartMate 3 LVAD</hasDeviceName>
+        <hasRiskClass>ClassIII</hasRiskClass>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/FSCA-001 -->
+
+
+    <owl:NamedIndividual rdf:about="http://example.org/safety-medical-devices/FSCA-001">
+        <rdf:type rdf:resource="http://example.org/safety-medical-devices/SafetyAlert"/>
+        <takenOver rdf:resource="http://example.org/safety-medical-devices/INC-001"/>
+        <actionDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2024-02-01</actionDate>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/INC-001 -->
+
+
+    <owl:NamedIndividual rdf:about="http://example.org/safety-medical-devices/INC-001">
+        <rdf:type rdf:resource="https://schema.org/Event"/>
+        <hasAssociatedRisk rdf:resource="http://example.org/safety-medical-devices/RSK-003"/>
+        <involvesDevice rdf:resource="http://example.org/safety-medical-devices/DEV-001"/>
+        <patientHasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">58</patientHasAge>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/MAN-001 -->
+
+
+    <owl:NamedIndividual rdf:about="http://example.org/safety-medical-devices/MAN-001">
+        <rdf:type rdf:resource="https://schema.org/Organization"/>
+        <hasEudamedSRN>SRN-IE-MED-0001</hasEudamedSRN>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/safety-medical-devices/RSK-003 -->
+
+
+    <owl:NamedIndividual rdf:about="http://example.org/safety-medical-devices/RSK-003">
+        <rdf:type rdf:resource="http://example.org/safety-medical-devices/InjuryRisk"/>
+        <hasIMDRFCode>A0201</hasIMDRFCode>
+        <hasSeverity>Critical</hasSeverity>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    <rdf:Description rdf:about="urn:swrl:var#c">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl:var#i">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl:var#a">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl:var#d">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="https://schema.org/Action"/>
+                        <swrl:argument1 rdf:resource="urn:swrl:var#c"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://example.org/safety-medical-devices/takenOver"/>
+                                <swrl:argument1 rdf:resource="urn:swrl:var#c"/>
+                                <swrl:argument2 rdf:resource="urn:swrl:var#i"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="http://example.org/safety-medical-devices/patientHasAge"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl:var#i"/>
+                                        <swrl:argument2 rdf:resource="urn:swrl:var#a"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                                                <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#lessThan"/>
+                                                <swrl:arguments>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                        <rdf:first rdf:resource="urn:swrl:var#a"/>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">18</rdf:first>
+                                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </swrl:arguments>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://example.org/safety-medical-devices/PediatricCorrectiveAction"/>
+                        <swrl:argument1 rdf:resource="urn:swrl:var#c"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="https://schema.org/MedicalDevice"/>
+                        <swrl:argument1 rdf:resource="urn:swrl:var#d"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://example.org/safety-medical-devices/hasRiskClass"/>
+                                <swrl:argument1 rdf:resource="urn:swrl:var#d"/>
+                                <swrl:argument2>ClassIII</swrl:argument2>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://example.org/safety-medical-devices/HighRiskDevice"/>
+                        <swrl:argument1 rdf:resource="urn:swrl:var#d"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="https://schema.org/Event"/>
+                        <swrl:argument1 rdf:resource="urn:swrl:var#i"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://example.org/safety-medical-devices/patientHasAge"/>
+                                <swrl:argument1 rdf:resource="urn:swrl:var#i"/>
+                                <swrl:argument2 rdf:resource="urn:swrl:var#a"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                                        <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#lessThan"/>
+                                        <swrl:arguments>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first rdf:resource="urn:swrl:var#a"/>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">18</rdf:first>
+                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </swrl:arguments>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://example.org/safety-medical-devices/PediatricIncident"/>
+                        <swrl:argument1 rdf:resource="urn:swrl:var#i"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/ -->
+
+
